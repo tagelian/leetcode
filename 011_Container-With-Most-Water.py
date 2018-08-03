@@ -10,6 +10,11 @@
 # 
 # Note: You may not slant the container and n is at least 2.
 # =============================================================================
+# =============================================================================
+# difficulty: medium
+# acceptance: 37.6%
+#contributor: LeetCode
+# =============================================================================
 class Solution:
     def maxArea(self, height):
         """

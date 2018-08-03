@@ -28,6 +28,11 @@
 
 # Coud you solve it without converting the integer to a string?
 # =============================================================================
+# =============================================================================
+# difficulty: easy
+# acceptance: 37.5%
+#contributor: LeetCode
+# =============================================================================
 class Solution:
     def isPalindrome(self, x):
         """
