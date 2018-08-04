@@ -70,13 +70,15 @@ class Solution:
                 else:
                     break
             left -= 1
-        right1 = zero_pos + 1
+        
+        zero_pos1 = bisect.bisect_right(nums, 0)        
+        right1 = zero_pos1 + 1
         x1 = 0
         while right1 < length:
             x1 = nums[right1]
 #            y = nums[mid]
 #            z = nums[right]
-            mid1 = zero_pos
+            mid1 = zero_pos1
             while mid1 >= 0:
                 left1 = mid1 - 1
                 while left1 >= 0 and  abs(nums[mid1] + nums[left1]) < x1:
@@ -100,7 +102,7 @@ class Solution:
         return result        
 #------------------------------------------------------------------------------
 # note: below is the test code 
-test = [-1, 1, 2, -1, -4]
+test = [-1, 1,0, 2, -1, -4]
 test1 = [0,0,0,0]
 S = Solution() 
 result = S.threeSum(test)
