@@ -103,5 +103,5 @@ while result:
 # Status: Accepted
 # Runtime: 84 ms
 # Submitted: 0 minutes ago
-# beats 12.10% python3 submissions 
+# beats 80.19% python3 submissions 
 # =============================================================================
