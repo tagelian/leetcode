@@ -36,16 +36,39 @@ class Solution:
         :type strs: List[str]
         :rtype: str
         """
-        pass
+        if len(strs) == 0:
+            return ''
+        strs.sort(key = lambda x: len(x))
+        res = []
+        pivot = strs[0]
+        for j in range(len(pivot)):
+            i = 1
+            while i < len(strs) and pivot[j] == strs[i][j]:
+                i += 1
+            if i == len(strs):
+                res.append(pivot[j])
+            else:
+                break
+        if len(res) == 0:
+            return ''
+        else:
+            return ''.join(res)
 # 2018 08 03 14:17 Friday
 # This problem is not so meaningful.
-
+# however, i redo this problem on 2018 0808 Wednesday
 #------------------------------------------------------------------------------
 # note: below is the test code 
-test = 'IX'
+test = ['a', 'b']
 S = Solution() 
-#result = S.romanToInt(test)
-#print(result)
+result = S.longestCommonPrefix(test)
+print(result)
 #------------------------------------------------------------------------------
 # note: below is the submission detail
-#beats 15.44% python3 submissions
+# =============================================================================
+# beats 84.98% python3 submissions
+# Submission Detail
+# 118 / 118 test cases passed.
+# Status: Accepted
+# Runtime: 40 ms
+# Submitted: 0 minutes ago
+# =============================================================================

@@ -45,8 +45,12 @@ class Solution:
 a = ListNode(1)
 b = ListNode(2)
 c = ListNode(3)
+d = ListNode(4)
+
 a.next = b
 b.next = c
+c.next = d
+
 test = a
 S = Solution() 
 result = S.swapPairs(test)
