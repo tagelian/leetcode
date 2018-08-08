@@ -24,6 +24,8 @@ class ListNode:
     def __init__(self, x):
         self.val = x
         self.next = None
+from collections import defaultdict as D
+import heapq as H
 class Solution:
     def mergeTwoLists(self, l1, l2):
         """
@@ -31,41 +33,37 @@ class Solution:
         :type l2: ListNode
         :rtype: ListNode
         """
-        dummy = ListNode(-1)
-        p = dummy
-        p1 = l1
-        while p1:
-            p11 = p1
-            p1 = p1.next
-        if l1:
-            p11.next = ListNode(float('inf'))
-        p2 = l2
-        while p2:
-            p22 = p2
-            p2 = p2.next
-        if l2:
-            p22.next = ListNode(float('inf'))
-        if l1 == None:
-            l1 =ListNode(float('inf')) 
-        if l2 == None:
-            l2 =ListNode(float('inf'))        
-        while (l1.val != float('inf') and l2.val != float('inf'))  and (l1 or l2):
-            if l1.val <= l2.val:
-                
-                p.next = l1
-                p = p.next
-                l1 = l1.next
-            else:
-                p.next = l2
-                p = p.next
-                l2 = l2.next
-        return dummy.next
+        d = D(int)
+        p = dummy = ListNode(-1)
+        heap = []
+        lists = [l1, l2]
+        for u in lists:
+            node = u
+            if node:
+                d[node.val] += 1
+                H.heappush(heap, ((node.val, d[node.val]), node))
+        while heap:
+            val, node = H.heappop(heap)
+            p.next = node
+            p = p.next
+            if node.next:
+                node = node.next
+                d[node.val] += 1
+                H.heappush(heap, ((node.val, d[node.val]), node))
+        return dummy.next                
 #------------------------------------------------------------------------------
 # note: below is the test code 
-test = 'IX'
-S = Solution() 
+#test = 'IX'
+#S = Solution() 
 #result = S.romanToInt(test)
 #print(result)
 #------------------------------------------------------------------------------
 # note: below is the submission detail
-#beats 15.44% python3 submissions
+# =============================================================================
+# beats 72.54% python3 submissions
+# Submission Detail
+# 208 / 208 test cases passed.
+# Status: Accepted
+# Runtime: 48 ms
+# Submitted: 0 minutes ago
+# =============================================================================

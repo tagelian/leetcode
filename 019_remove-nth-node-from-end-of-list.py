@@ -24,7 +24,7 @@
 # =============================================================================
 # =============================================================================
 # difficulty: easy
-# acceptance: 31.8%
+# acceptance: 33.8%
 # contributor: LeetCode
 # =============================================================================
 #Definition for singly-linked list.
@@ -33,6 +33,7 @@ class ListNode:
     def __init__(self, x):
         self.val = x
         self.next = None
+from collections import defaultdict as D
 class Solution:
     def removeNthFromEnd(self, head, n):
         """
@@ -40,28 +41,30 @@ class Solution:
         :type n: int
         :rtype: ListNode
         """
-        d = {}
-        if head == None:
-            return head
-        p = head
-        index = 1
+        d = D(int)
+        p = dummy = ListNode(-1)
+        dummy.next = head
+        count = 0
         while p:
-            d[index] = p
+            count += 1
+            d[count] = p
             p = p.next
-            index += 1
-        if  1 < n < index:
-            d[index - n].next = d[index - n + 2]
-        if n == 1:
-            d[index - 1].next = None
-        if n == index:
-            head = d[2]
-        return head
+        length = count + 1
+        d[length - n - 1].next = d[length - n].next
+        return dummy.next
 #------------------------------------------------------------------------------
 # note: below is the test code 
-test = 'IX'
-S = Solution() 
+#test = 'IX'
+#S = Solution() 
 #result = S.romanToInt(test)
 #print(result)
 #------------------------------------------------------------------------------
 # note: below is the submission detail
-#beats 15.44% python3 submissions
+# =============================================================================
+# Submission Detail
+# 208 / 208 test cases passed.
+# Status: Accepted
+# Runtime: 48 ms
+# Submitted: 0 minutes ago
+# beats 15.44% python3 submissions
+# =============================================================================
