@@ -39,7 +39,51 @@ class Solution:
         :type k: int
         :rtype: ListNode
         """
-        
+        def reverseList(head, k):
+            pre = None
+            cur = head
+            while cur and k:
+                temp = cur.next
+                cur.next = pre
+                pre = cur
+                cur = temp
+                k -= 1
+            return (cur, pre)
+        p1 = head
+        length = 0
+        while p1:
+            length += 1
+            p1 = p1.next
+        if length < k:
+            return head
+        step = length // k
+        p = head
+        res = None
+        pre = None
+        while p and step:
+            nextp, newhead = reverseList(p, k)
+            if not res:
+                res = newhead
+            if pre:
+                pre.next = newhead
+            pre = p
+            p = nextp
+            step -= 1
+        pre.next = p
+        return res
+#        reverseList(head, k)
+# =============================================================================
+# def reverseList(head, k):
+#     pre = None
+#     cur = head
+#     while cur and k:
+#         temp = cur.next
+#         cur.next = pre
+#         pre = cur
+#         cur = temp
+#         k -= 1
+#     return (cur, pre)
+# =============================================================================
 #------------------------------------------------------------------------------
 # note: below is the test code 
 a = ListNode(1)
@@ -53,7 +97,7 @@ c.next = d
 
 test = a
 S = Solution() 
-result = S.swapPairs(test)
+result = S.reverseKGroup(test, 3)
 #result = a
 while result:
     print(result.val)
@@ -62,9 +106,9 @@ while result:
 # note: below is the submission detail
 # =============================================================================
 # Submission Detail
-# 55 / 55 test cases passed.
+# 81 / 81 test cases passed.
 # Status: Accepted
-# Runtime: 44 ms
-# Submitted: 1 minute ago
-# beats 12.10% python3 submissions    
+# Runtime: 56 ms
+# Submitted: 0 minutes ago
+# beats 93.99% python3 submissions    
 # =============================================================================
